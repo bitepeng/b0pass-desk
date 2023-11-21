@@ -1,0 +1,10 @@
+{
+  "name": "百灵快传",
+  "outputfilename": "b0pass-desk",
+  "frontend:install": "",
+  "frontend:build": "",
+  "author": {
+    "name": "bitepeng",
+    "email": "bitepeng@qq.com"
+  }
+}

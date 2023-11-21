@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>myproject</title>
+  <link rel="stylesheet" href="assets/main.css">
+</head>
+
+<body data-wails-drag>
+  <div class="logo">
+    <img src="assets/images/icon.png" />
+    <h1>B0Pass <Var>V2.0</Var></h1>
+    <p class="txt">百灵快传 - 局域网电脑手机超大文件传输工具</p>
+  </div>
+
+  <div class="title">主电脑配置</div>
+  <table class="config input-box" data-wails-no-drag>
+    <tr>
+        <td class="label">服务端口</td>
+        <td><input class="input" id="ip" type="text" autocomplete="off" placeholder="默认填写 :8899"></td>
+    </tr>
+    <tr>
+        <td class="label">文件目录</td>
+        <td><input class="input" id="path" type="text" autocomplete="off" placeholder="默认当前目录 files"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><button class="btn btn-submit" onclick="submitConfig()">启动服务</button></td>
+    </tr>
+  </table>
+  <div class="txt">通过以上配置启动文件服务，本机成为主电脑</div>
+  <div class="result" id="result"></div>
+
+  <script src="assets/main.js"></script>
+</body>
+
+</html>
