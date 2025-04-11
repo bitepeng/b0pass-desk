@@ -16,12 +16,15 @@ import (
 
 var (
 	configIni = "config.ini"
-	configTxt = "[gateway]\nLive = false\nListenAddr = \"$ip$\"\n\n[pass]\nLive = false\nPath = \"$path$\""
+	configTxt = "[gateway]\nLive = false\nListenAddr = \"$ip$\"\n\n[pass]\nLive = false\nPath = \"$path$\"\nCodeReadonly = \"$codero$\"\nCodeReadwrite = \"$coderw$\"\nLockUploaddir = \"$lockdir$\""
 )
 
 type configData struct {
-	Ip   interface{}
-	Path interface{}
+	Ip            interface{}
+	Path          interface{}
+	CodeReadonly  interface{}
+	CodeReadwrite interface{}
+	LockUploaddir interface{}
 }
 
 // 启动HTTP服务
@@ -34,29 +37,35 @@ func StartServer() {
 func (a *App) LoadConfig() configData {
 	config, err := toml.LoadFile(configIni)
 	if err != nil {
-		//configTxt := "[gateway]\nLive = false\nListenAddr = \":8899\"\n\n[pass]\nLive = false\nPath = \"files\""
 		configTxt = strings.Replace(configTxt, "$ip$", ":8899", -1)
 		configTxt = strings.Replace(configTxt, "$path$", "files", -1)
+		configTxt = strings.Replace(configTxt, "$codero$", "", -1)
+		configTxt = strings.Replace(configTxt, "$coderw$", "", -1)
+		configTxt = strings.Replace(configTxt, "$lockdir$", "", -1)
 		os.WriteFile(configIni, []byte(configTxt), 0755)
 		config, _ = toml.LoadFile(configIni)
 	}
 	ListenAddr := config.Get("gateway.ListenAddr")
 	Path := config.Get("pass.Path")
-	//res, _ := json.Marshal(configData{Ip: ListenAddr, Path: Path})
-	return configData{Ip: ListenAddr, Path: Path}
+	CodeReadonly := config.Get("pass.CodeReadonly")
+	CodeReadwrite := config.Get("pass.CodeReadwrite")
+	LockUploaddir := config.Get("pass.LockUploaddir")
+	return configData{Ip: ListenAddr, Path: Path, CodeReadonly: CodeReadonly, CodeReadwrite: CodeReadwrite, LockUploaddir: LockUploaddir}
 }
 
 // Submit Config
-func (a *App) SubmitConfig(ip, path string) string {
+func (a *App) SubmitConfig(ip, path, codero, coderw, lockdir string) string {
 	var urls string
 	if !strings.Contains(ip, ":") {
 		ip = ":" + ip
 		urls = "http://127.0.0.1" + ip
 	}
-	path = strings.ReplaceAll(path, `\`, `\\`)
+	path = strings.ReplaceAll(path, `\`, `/`)
 	configTxt = strings.Replace(configTxt, "$ip$", ip, -1)
 	configTxt = strings.Replace(configTxt, "$path$", path, -1)
-	//configTxt := "[gateway]\nLive = false\nListenAddr = \"" + ip + "\"\n\n[pass]\nLive = false\nPath = \"" + path + "\""
+	configTxt = strings.Replace(configTxt, "$codero$", codero, -1)
+	configTxt = strings.Replace(configTxt, "$coderw$", coderw, -1)
+	configTxt = strings.Replace(configTxt, "$lockdir$", lockdir, -1)
 	os.WriteFile(configIni, []byte(configTxt), 0755)
 
 	// Behind Server

@@ -1,21 +1,24 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>myproject</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百灵快传</title>
   <link rel="stylesheet" href="assets/main.css">
 </head>
 
 <body data-wails-drag>
   <div class="logo">
-    <img src="assets/images/icon.png" />
-    <h1>B0Pass <Var>V2.0</Var></h1>
-    <p class="txt">百灵快传 - 局域网电脑手机超大文件传输工具</p>
+    <img src="assets/images/icon.png" title="百灵快传"/>
+    <h1 class="shadow">B0Pass Desktop</h1>
+    <p class="txt"><span class="desc shadow">
+      <a href="https://4bit.cn/p/b0pass" target="_blank" title="百灵快传">百灵快传</a> - 局域网电脑手机超大文件传输工具</span>
+    </p>
   </div>
 
-  <div class="title">主电脑配置</div>
-  <table class="config input-box" data-wails-no-drag>
+  <div class="title shadow">主电脑配置</div>
+  <table class="config input-box shadow" data-wails-no-drag>
     <tr>
         <td class="label">服务端口</td>
         <td><input class="input" id="ip" type="text" autocomplete="off" placeholder="默认填写 :8899"></td>
@@ -25,11 +28,31 @@
         <td><input class="input" id="path" type="text" autocomplete="off" placeholder="默认当前目录 files"></td>
     </tr>
     <tr>
-        <td colspan="2"><button class="btn btn-submit" onclick="submitConfig()">启动服务</button></td>
+      <td class="label">只读密码</td>
+      <td>
+        <input class="input" id="codero" type="text" autocomplete="off" placeholder="如 123, 不填不限制">
+      </td>
+    </tr>
+    <tr>
+      <td class="label">读写密码</td>
+      <td>
+        <input class="input" id="coderw" type="text" autocomplete="off" placeholder="如 admin, 不填不限制">
+      </td>
+    </tr>
+    <tr>
+      <td class="label">锁定上传</td>
+      <td>
+        <input class="input" id="lockdir" type="text" autocomplete="off" placeholder="如 upload, 不填不限制">
+      </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+          <button type="button" class="btn btn-submit" onclick="submitConfig()">启 动</button>
+        </td>
     </tr>
   </table>
-  <div class="txt">通过以上配置启动文件服务，本机成为主电脑</div>
   <div class="result" id="result"></div>
+  
 
   <script src="assets/main.js"></script>
 </body>

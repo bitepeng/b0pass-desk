@@ -38,6 +38,6 @@ export function SaveFileDialog() {
   return window['go']['main']['App']['SaveFileDialog']();
 }
 
-export function SubmitConfig(arg1, arg2) {
-  return window['go']['main']['App']['SubmitConfig'](arg1, arg2);
+export function SubmitConfig(arg1, arg2, arg3, arg4, arg5) {
+  return window['go']['main']['App']['SubmitConfig'](arg1, arg2, arg3, arg4, arg5);
 }

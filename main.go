@@ -25,10 +25,10 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:             "百灵快传 - 大文件传输工具",
-		Width:             1000,
-		Height:            1000,
-		MinWidth:          600,
-		MinHeight:         800,
+		Width:             800,
+		Height:            800,
+		MinWidth:          400,
+		MinHeight:         400,
 		DisableResize:     false,
 		Fullscreen:        false,
 		Frameless:         false,

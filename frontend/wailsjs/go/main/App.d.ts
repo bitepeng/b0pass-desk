@@ -20,4 +20,4 @@ export function OpenMultipleFilesDialog():Promise<Array<string>>;
 
 export function SaveFileDialog():Promise<string>;
 
-export function SubmitConfig(arg1:string,arg2:string):Promise<string>;
+export function SubmitConfig(arg1:string,arg2:string,arg3:string,arg4:string,arg5:string):Promise<string>;
